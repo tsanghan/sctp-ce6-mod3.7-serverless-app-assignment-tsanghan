@@ -38,6 +38,15 @@ functions:
           batchSize: 10
           maximumBatchingWindow: 60
           functionResponseType: ReportBatchItemFailures
+  hello3:
+    handler: index.hello3
+    events:
+      - httpApi:
+          path: /hello3
+          method: get
+      - sns:
+          arn: !Ref SuperTopic
+          topicName: MyCustomTopic
 
 resources:
   Resources:
@@ -45,22 +54,10 @@ resources:
       Type: "AWS::SQS::Queue"
       Properties:
         QueueName: "tsanghan-ce6-Q"
-
-# resources:
-#   Resources:
-#     userTable:
-#       Type: AWS::DynamoDB::Table
-#       Properties:
-#         TableName: usersTable
-#         AttributeDefinitions:
-#           - AttributeName: email
-#             AttributeType: S
-#         KeySchema:
-#           - AttributeName: email
-#             KeyType: HASH
-#         ProvisionedThroughput:
-#           ReadCapacityUnits: 1
-#           WriteCapacityUnits: 1
+    SuperTopic:
+      Type: "AWS::SNS::Topic"
+      Properties:
+        TopicName: "MyCustomTopic"
 
 plugins:
   - serverless-offline
