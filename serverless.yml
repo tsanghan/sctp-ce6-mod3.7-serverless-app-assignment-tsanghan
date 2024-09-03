@@ -7,6 +7,9 @@ provider:
   name: aws
   runtime: nodejs20.x
   region: ap-southeast-1
+  s3:
+    myBucket:
+      name: tsanghan-ce6-serverless-s3-bucket
 
 functions:
   hello:
@@ -15,6 +18,12 @@ functions:
       - httpApi:
           path: /hello
           method: get
+      - s3:
+          bucket: myBucket
+          event: s3:ObjectCreated:*
+      - s3:
+          bucket: myBucket
+          event: s3:ObjectRemoved:*
   hello2:
     handler: index.hello2
     events:
@@ -26,6 +35,9 @@ functions:
             Fn::GetAtt:
               - MyQueue
               - Arn
+          batchSize: 10
+          maximumBatchingWindow: 60
+          functionResponseType: ReportBatchItemFailures
 
 resources:
   Resources:
