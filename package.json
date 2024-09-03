@@ -1,0 +1,22 @@
+{
+  "name": "sctp-ce6-mod3.7-serverless-app-assignment-tsanghan",
+  "version": "1.0.0",
+  "description": "Repository containing Serverless Node application deployment using `Serverless Framwork` (`serverless`/`sls` command).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsanghan/sctp-ce6-mod3.7-serverless-app-assignment-tsanghan.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsanghan/sctp-ce6-mod3.7-serverless-app-assignment-tsanghan/issues"
+  },
+  "homepage": "https://github.com/tsanghan/sctp-ce6-mod3.7-serverless-app-assignment-tsanghan#readme",
+  "devDependencies": {
+    "serverless-offline": "^13.8.0"
+  }
+}

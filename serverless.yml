@@ -1,0 +1,42 @@
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: tsanghan-ce6-serverless-app
+
+frameworkVersion: '4'
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ap-southeast-1
+
+functions:
+  hello:
+    handler: index.hello
+    events:
+      - httpApi:
+          path: /hello
+          method: get
+  hello2:
+    handler: index.hello2
+    events:
+      - httpApi:
+          path: /hello2
+          method: get
+
+resources:
+  Resources:
+    userTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: usersTable
+        AttributeDefinitions:
+          - AttributeName: email
+            AttributeType: S
+        KeySchema:
+          - AttributeName: email
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+plugins:
+  - serverless-offline
