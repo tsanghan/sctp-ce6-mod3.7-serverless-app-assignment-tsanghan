@@ -32,3 +32,8 @@ For help
 ```
 serverless --help
 ```
+
+There are 3 functions in the `serverless.yml` definition file.
+1) function `hello` has `httpApi`, `s3:ObjectCreated:*` & `s3:ObjectRemoved:*` events.
+2) function `hello2` has `httpApi` and `sqs` events.
+3) function `hello3` has `httpApi` and `sns` events.
