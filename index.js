@@ -1,4 +1,5 @@
 exports.hello = async (event) => {
+  console.log("HELLO")
   return {
     statusCode: 200,
     body: JSON.stringify({
@@ -8,6 +9,7 @@ exports.hello = async (event) => {
 };
 
 exports.hello2 = async (event) => {
+  console.log("HELLO2")
   return {
     statusCode: 200,
     body: JSON.stringify({

@@ -21,22 +21,34 @@ functions:
       - httpApi:
           path: /hello2
           method: get
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - MyQueue
+              - Arn
 
 resources:
   Resources:
-    userTable:
-      Type: AWS::DynamoDB::Table
+    MyQueue:
+      Type: "AWS::SQS::Queue"
       Properties:
-        TableName: usersTable
-        AttributeDefinitions:
-          - AttributeName: email
-            AttributeType: S
-        KeySchema:
-          - AttributeName: email
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
+        QueueName: "tsanghan-ce6-Q"
+
+# resources:
+#   Resources:
+#     userTable:
+#       Type: AWS::DynamoDB::Table
+#       Properties:
+#         TableName: usersTable
+#         AttributeDefinitions:
+#           - AttributeName: email
+#             AttributeType: S
+#         KeySchema:
+#           - AttributeName: email
+#             KeyType: HASH
+#         ProvisionedThroughput:
+#           ReadCapacityUnits: 1
+#           WriteCapacityUnits: 1
 
 plugins:
   - serverless-offline
